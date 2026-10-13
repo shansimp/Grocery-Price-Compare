@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grocery Price Finder</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:20px;background:#f5f5f5}
+.card{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+input,button{padding:12px;font-size:16px}
+input{width:70%} button{background:#0a7a44;color:white;border:none;border-radius:6px;cursor:pointer}
+.links{margin-top:20px} .link{display:block;margin:10px 0;padding:12px;background:#eef3ff;border-radius:6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Grocery Price Finder</h1>
+<p>Enter an item and open searches in Amazon, Kroger, and Walmart.</p>
+<input id="item" placeholder="milk, eggs, bananas" />
+<button onclick="searchStores()">Search</button>
+<div class="links" id="results"></div>
+</div>
+<script>
+function searchStores(){
+ const item=document.getElementById('item').value.trim();
+ if(!item){alert('Enter an item');return;}
+ const q=encodeURIComponent(item);
+ document.getElementById('results').innerHTML=`
+ <a class='link' target='_blank' href='https://www.amazon.com/s?k=${q}&i=amazonfresh'>Amazon Grocery: ${item}</a>
+ <a class='link' target='_blank' href='https://www.kroger.com/search?query=${q}'>Kroger: ${item}</a>
+ <a class='link' target='_blank' href='https://www.walmart.com/search?q=${q}'>Walmart: ${item}</a>`;
+}
+</script>
+</body>
+</html>
